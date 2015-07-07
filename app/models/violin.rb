@@ -4,4 +4,8 @@ class Violin < ActiveRecord::Base
      sleep 7
      super
    end
+
+   def play
+     rand(2) == 1 ?  "sweet notes" : "ba-doink"
+   end
 end

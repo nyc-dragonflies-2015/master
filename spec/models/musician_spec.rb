@@ -20,10 +20,15 @@ describe Musician do
     end
   end
 
-  it "does not say woo hoo when she receives a shitty violin" do
-    violiniste = Musician.create name: "Violetta Torino"
-    violin = Violin.create maker: "McCatGuts"
-    violiniste.give_instrument(violin)
-    expect(violiniste.speak).to_not eq "woo-hoo"
+  context "with a violin that breaks it string" do
+    it "is very mad" do
+      expect(old_violin).to receive(:play).at_least(:once) { "ba-doink" }
+      expect(violiniste.play(old_violin)).to eq "Holy Traviata, fucking thing!"
+    end
+
+    it "is very happy" do
+      expect(old_violin).to receive(:play).at_least(:once) { "she's happy as long as the string is not 'ba-doink'" }
+      expect(violiniste.play(old_violin)).to eq "I am amazing!"
+    end
   end
 end
